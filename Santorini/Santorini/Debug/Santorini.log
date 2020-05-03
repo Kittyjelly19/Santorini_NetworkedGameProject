@@ -1,2 +1,2 @@
-﻿  Santorini.cpp
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Santorini.cpp(5,10): fatal error C1083: Cannot open include file: 'SFML/Network.hpp': No such file or directory
+﻿  main.cpp
+  Santorini.vcxproj -> C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Debug\Santorini.exe

@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-#include <SFML/>
+#include <SFML/Network.hpp>
 
 int main()
 {
