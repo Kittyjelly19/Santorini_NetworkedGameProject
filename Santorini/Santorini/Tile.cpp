@@ -8,7 +8,7 @@ Tile::~Tile()
 {
 }
 
-void Tile::Draw(sf::RenderWindow& w)
+void Tile::DrawTile(sf::RenderWindow& w)
 {
 	sf::RectangleShape rectangle;
 	rectangle.setOutlineThickness(5);
@@ -22,7 +22,7 @@ void Tile::Draw(sf::RenderWindow& w)
 		rectangle.setPosition(x * 120 + 5, y * 120 + 5);
 		rectangle.setFillColor(cFill);
 
-		if (hasOutline)
+		if (isOutlined)
 		{
 			rectangle.setOutlineColor(sf::Color::Red);
 		}
@@ -53,7 +53,7 @@ void Tile::Draw(sf::RenderWindow& w)
 	}
 }
 
-bool Tile::Build()
+bool Tile::BuildOnTile()
 {
 	std::cout << "Build: " << x << " " << y << " " << level << std::endl;
 

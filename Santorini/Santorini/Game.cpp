@@ -11,7 +11,7 @@ Game::~Game()
 	delete world;
 }
 
-void Game::Run()
+void Game::MainGameLoop()
 {
 	while (window.isOpen())
 	{
@@ -24,21 +24,21 @@ void Game::Run()
 
 		window.clear();
 
-		switch (state)
+		switch (runningState)
 		{
-		case GameState::PlayState:
+		case GameStates::PlayState:
 			Play();
 			break;
 
-		case GameState::WinState:
-			Victory();
+		case GameStates::WinState:
+			Winner();
 			break;
 
-		case GameState::LoseState:
-			Defeat();
+		case GameStates::LoseState:
+			Loser();
 			break;
 
-		case GameState::Exit:
+		case GameStates::ExitState:
 			return;
 
 		default:
@@ -55,20 +55,20 @@ void Game::Play()
 	world->Draw();
 }
 
-void Game::Victory()
+void Game::Winner()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		state = GameState::PlayState;
+		runningState = GameStates::PlayState;
 		world->Setup();
 	}
 }
 
-void Game::Defeat()
+void Game::Loser()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		state = GameState::PlayState;
+		runningState = GameStates::PlayState;
 		delete world;
 		world = new World(window, this);
 	}
@@ -76,6 +76,6 @@ void Game::Defeat()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		std::cout << "Terminate" << std::endl;
-		state = GameState::Exit;
+		runningState = GameStates::ExitState;
 	}
 }

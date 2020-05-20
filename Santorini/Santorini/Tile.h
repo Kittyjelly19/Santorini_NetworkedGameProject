@@ -13,15 +13,15 @@ public:
 	Tile();
 	~Tile();
 
-	void Draw(sf::RenderWindow& w);
-	bool Build();
+	void DrawTile(sf::RenderWindow& w);
+	bool BuildOnTile();
 
 	unsigned short x;
 	unsigned short y;
 
 	unsigned short level = 0;
 
-	bool hasOutline = false;
+	bool isOutlined = false;
 };
 
 #endif

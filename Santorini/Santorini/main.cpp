@@ -7,7 +7,7 @@ int main()
 	Game g;
 
 	//RenderFunction();
-	g.Run();
+	g.MainGameLoop();
 
 	return 0;
 }

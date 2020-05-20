@@ -7,6 +7,15 @@
 
 using namespace std;
 
+//Client Packet
+enum ClientPacket
+{
+	PlayerTurn,
+	UpdateBoard,
+	MoveUpdate,
+	GameEvent,
+	Exit
+};
 
 class Client
 {
