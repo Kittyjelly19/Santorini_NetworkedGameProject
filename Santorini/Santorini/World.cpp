@@ -24,7 +24,7 @@ void World::Setup()
 			tiles[i][j].x = i;
 			tiles[i][j].y = j;
 
-			tiles[i][j].level = 0;
+			tiles[i][j].buildLevel = 0;
 		}
 	}
 
