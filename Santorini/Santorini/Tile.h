@@ -19,7 +19,7 @@ public:
 	unsigned short x;
 	unsigned short y;
 
-	unsigned short level = 0;
+	unsigned short buildLevel = 0;
 
 	bool isOutlined = false;
 };

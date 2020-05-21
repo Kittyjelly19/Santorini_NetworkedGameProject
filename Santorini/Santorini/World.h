@@ -8,10 +8,11 @@
 
 class Game;
 
-//enum for possible player states
+//enum for player states
 enum PlayerStates
 {
-	WaitForOpposition,
+
+	PlaceWorkerState,
 	SelectWorkerState,
 	MoveWorkerState,
 	BuildState,
@@ -25,41 +26,54 @@ private:
 	Game* g;
 	sf::RenderWindow& window;
 
+	
 	//Array storing grid tiles.
-	std::array<std::array<Tile, 5>, 5> tiles{ {{{Tile(), Tile(), Tile()}}, {{Tile(), Tile(), Tile()}}, {{Tile(), Tile(), Tile()}}} };
+	std::array<std::array<Tile, 5>, 5> boardTilesArr{ {{{Tile(), Tile(), Tile()}}, {{Tile(), Tile(), Tile()}}, {{Tile(), Tile(), Tile()}}} };
+	
+	
+	//Setting default player state and default chosen worker.
+	PlayerStates currentPState = PlayerStates::PlaceWorkerState;
+	Worker* chosenWorker = NULL;
+	Tile* hoveredTile = NULL;
+	Tile* builderTile = NULL;
+
 	
 	//Vector storing workers
 	std::vector<Worker> workers;
-
-	//Setting default player state and default selected worker.
-	PlayerStates currentPState = PlayerStates::SelectWorkerState;
-	Worker* selectedWorker = NULL;
-
-	//Setting game defaults.
+	
+	//Setting player defaults.
 	int numPlayers = 2;
-
-	unsigned short turn;
-
+	unsigned short playerTurn;
 	int playerTurnID = 0;
+	bool hasPlacedWorkers = false;
 
-	bool isMouseClicked = false;
+	
 
 public:
 	
 	World(sf::RenderWindow& w, Game* g);
 	~World();
 
+	//Set up world
 	void Setup();
 	void Update();
-	void Draw();
 
-	Tile* MouseHover();
-	void DrawHover();
+	void DrawGameBoard();
 
+	//Set up mouse
+	bool isMouseClicked = false;
+	Tile* Hover();
+	void DrawHoverOutline();
+
+	//Possible Player actions
+	void PlaceWorker();
 	void SelectWorker(int& player);
 	void MoveWorker(int& player);
 	void Build();
 
-	int boardTiles = 5;
+	//Tile Checks
+	bool isInRange = true;
+	bool isOccupied = false;
+	int numTiles = 5;
 };
 #endif

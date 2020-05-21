@@ -2,7 +2,7 @@
 #include "Game.h"
 #include <cstdlib>
 #include <iostream>
-#include <algorithm>
+//#include <algorithm>
 
 World::World(sf::RenderWindow& w, Game* g_) : window(w)
 {
@@ -17,35 +17,65 @@ World::~World()
 
 void World::Setup()
 {
-	for (int i = 0; i < boardTiles; i++)
+	DrawHoverOutline();
+	DrawGameBoard();
+	
+	for (int i = 0; i < numTiles; i++)
 	{
-		for (int j = 0; j < boardTiles; j++)
+		for (int j = 0; j < numTiles; j++)
 		{
-			tiles[i][j].x = i;
-			tiles[i][j].y = j;
+			boardTilesArr[i][j].x = i;
+			boardTilesArr[i][j].y = j;
 
-			tiles[i][j].level = 0;
+			boardTilesArr[i][j].buildLevel = 0;
+		}
+	}
+	PlaceWorker();
+	//Making workers exist in game and adding to vector. 
+	/*workers.push_back(Worker(1, 1, 0));
+	workers.push_back(Worker(3, 3, 0));
+	workers.push_back(Worker(3, 1, 1));
+	workers.push_back(Worker(1, 3, 1));*/
+	/*numPlayers = players;*/
+
+	playerTurn = 0;
+}
+
+
+//Drawing the game level. 
+void World::DrawGameBoard()
+{
+	window.clear();
+
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			boardTilesArr[i][j].DrawTile(window);
 		}
 	}
 
-	workers.push_back(Worker(1, 1, 0));
-	workers.push_back(Worker(3, 3, 0));
-	workers.push_back(Worker(3, 1, 1));
-	workers.push_back(Worker(1, 3, 1));
-	/*numPlayers = players;*/
-
-	turn = 0;
+	//Drawing workers.
+	/*for (int i = 0; i < 4; i++)
+	{
+		workers[i].Draw(window);
+	}*/
 }
-
 void World::Update()
 {
-	DrawHover();
+	DrawHoverOutline();
+
+	//Player turn
+	playerTurnID = playerTurn % numPlayers; 
 
 
-	playerTurnID = turn % 2; // Determines which players go it is
-
+	//Possible Player states.
 	switch (currentPState)
 	{
+	case PlayerStates::PlaceWorkerState:
+		PlaceWorker();
+		break;
+	
 	case PlayerStates::SelectWorkerState:
 		SelectWorker(playerTurnID);
 		break;
@@ -63,81 +93,88 @@ void World::Update()
 	}
 }
 
-void World::Draw()
-{
-	window.clear();
 
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			tiles[i][j].DrawTile(window);
-		}
-	}
 
-	for (int i = 0; i < 4; i++)
-	{
-		workers[i].Draw(window);
-	}
-}
 
-Tile* World::MouseHover()
+
+Tile* World::Hover()
 {
 	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-	int tileI = 0;
-	int tileJ = 0;
+	int A = 0;
+	int B = 0;
 
-	for (int i = 0; i < 5; i++)
+	for (int a = 0; a < numTiles; a++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (int b = 0; b < numTiles; b++)
 		{
-			tiles[i][j].isOutlined = false;
+			boardTilesArr[a][b].isOutlined = false;
 
-			if (mousePos.x >= tiles[i][j].x * 120 + 5)
+			if (mousePos.x >= boardTilesArr[a][b].x * 120 + 5)
 			{
-				if (i < 4)
+				if (a < 4)
 				{
-					if (mousePos.x <= tiles[i + 1][j].x * 120 + 5)
+					if (mousePos.x <= boardTilesArr[a + 1][b].x * 120 + 5)
 					{
-						tileI = i;
+						A = a;
 					}
 				}
 				else
 				{
-					tileI = i;
+					A = a;
 				}
 			}
 
-			if (mousePos.y >= tiles[i][j].y * 120 + 5)
+			if (mousePos.y >= boardTilesArr[a][b].y * 120 + 5)
 			{
-				if (j < 4)
+				if (b < 4)
 				{
-					if (mousePos.y <= tiles[i][j + 1].y * 120 + 5)
+					if (mousePos.y <= boardTilesArr[a][b + 1].y * 120 + 5)
 					{
-						tileJ = j;
+						B = b;
 					}
 				}
 				else
 				{
-					tileJ = j;
+					B = b;
 				}
 			}
 		}
 	}
 
-	return &(tiles[tileI][tileJ]);
+	return &(boardTilesArr[A][B]);
 }
 
-void World::DrawHover()
+void World::DrawHoverOutline()
 {
-	Tile* currentTile = MouseHover();
-	currentTile->isOutlined = true;
+	Tile* hoveredTile = Hover();
+	hoveredTile->isOutlined = true;
 }
+
+
+void World::PlaceWorker()
+{
+	hasPlacedWorkers = false;
+
+	playerTurnID = playerTurn % numPlayers;
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		isMouseClicked = false;
+	}
+
+	if ((!isMouseClicked) && (!sf::Mouse::isButtonPressed(sf::Mouse::Left)))
+	{
+		isMouseClicked = true;
+
+			Tile* hoveredTile = Hover();
+	}
+}
+
 
 void World::SelectWorker(int& player)
 {
-	bool isWorkerSelected = false;
+	bool hasChosenWorker = false;
 
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
@@ -150,22 +187,22 @@ void World::SelectWorker(int& player)
 
 		std::cout << "WORKER SELECTED" << std::endl;
 		
-		Tile* currentTile = MouseHover();
+		Tile* hoveredTile = Hover();
 
 		for (int i = 0; i < 4; i++)
 		{
-			if ((workers[i].x == currentTile->x) && (workers[i].y == currentTile->y))
+			if ((workers[i].x == hoveredTile->x) && (workers[i].y == hoveredTile->y))
 			{
-				if (player == workers[i].playerID) // If player owns builder
+				if (player == workers[i].playerID) 
 				{
-					isWorkerSelected = true;
-					selectedWorker = &workers[i];
+					hasChosenWorker = true;
+					chosenWorker = &workers[i];
 					break;
 				}
 			}
 		}
 
-		if (isWorkerSelected)
+		if (hasChosenWorker)
 		{
 			currentPState = PlayerStates::MoveWorkerState;
 		}
@@ -188,9 +225,9 @@ void World::MoveWorker(int& player)
 		std::cout << "MOVE" << std::endl;
 		std::cout << playerTurnID << std::endl;
 
-		Tile* currentTile = MouseHover();
+		Tile* currentTile = Hover();
 
-		selectedWorker->MoveWorker(currentTile->x, currentTile->y);
+		chosenWorker->MoveWorker(currentTile->x, currentTile->y);
 		playerMoved = true;
 	}
 
@@ -202,7 +239,7 @@ void World::MoveWorker(int& player)
 
 void World::Build()
 {
-	bool playerBuilt = false;
+	bool hasBuiltOnTile = false;
 
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
@@ -216,12 +253,12 @@ void World::Build()
 		std::cout << "BUILD" << std::endl;
 		std::cout << playerTurnID << std::endl;
 
-		Tile* currentTile = MouseHover();
+		Tile* hoveredTile = Hover();
 	}
 
-	if (playerBuilt)
+	if (hasBuiltOnTile)
 	{
-		turn++;
+		playerTurn++;
 		currentPState = PlayerStates::SelectWorkerState;
 	}
 }

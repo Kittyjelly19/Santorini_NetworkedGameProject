@@ -10,9 +10,6 @@ enum class GameStates
 	MenuState,
 	SetUpGameState,
 	PlayState,
-	WinState,
-	LoseState,
-	GameOverState,
 	ExitState
 };
 
@@ -23,29 +20,20 @@ private:
 	sf::RenderWindow window;
 	World* world = NULL;
 
-
-
-	//void Place();
+	void SetUpGame();
 	void Play();
-	void Winner();
-	void Loser();
+	
 
 public:
-	GameStates runningState = GameStates::PlayState;
+	GameStates runningState = GameStates::SetUpGameState;
 
 	Game();
 	~Game();
 
 	//Game
 	void MainGameLoop();
-	void Render();
 
-	//Menu
-	void Menu();
 
-	//Set up game 
-	void SetUpGame();
-	void RunGame();
-	void PlaceWorker();
+
 };
 #endif

@@ -26,17 +26,15 @@ void Game::MainGameLoop()
 
 		switch (runningState)
 		{
+		case GameStates::SetUpGameState:
+			SetUpGame();
+			break;
+		
+		
 		case GameStates::PlayState:
 			Play();
 			break;
 
-		case GameStates::WinState:
-			Winner();
-			break;
-
-		case GameStates::LoseState:
-			Loser();
-			break;
 
 		case GameStates::ExitState:
 			return;
@@ -49,33 +47,14 @@ void Game::MainGameLoop()
 	}
 }
 
+void Game::SetUpGame()
+{
+	world->Setup();
+}
 void Game::Play()
 {
 	world->Update();
-	world->Draw();
+	world->DrawGameBoard();
 }
 
-void Game::Winner()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		runningState = GameStates::PlayState;
-		world->Setup();
-	}
-}
 
-void Game::Loser()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		runningState = GameStates::PlayState;
-		delete world;
-		world = new World(window, this);
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	{
-		std::cout << "Terminate" << std::endl;
-		runningState = GameStates::ExitState;
-	}
-}

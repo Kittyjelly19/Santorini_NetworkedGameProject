@@ -1,6 +1,6 @@
 #include "Tile.h"
 
-Tile::Tile() : x(0), y(0), level(0)
+Tile::Tile() : x(0), y(0), buildLevel(0)
 {
 }
 
@@ -10,41 +10,43 @@ Tile::~Tile()
 
 void Tile::DrawTile(sf::RenderWindow& w)
 {
-	sf::RectangleShape rectangle;
-	rectangle.setOutlineThickness(5);
-	sf::Color cOutline = sf::Color::Black;
-	sf::Color cFill = sf::Color::White;
+	sf::RectangleShape tileRect;
+	tileRect.setOutlineThickness(5);
+	sf::Color tileOutline = sf::Color::Black;
+	sf::Color tileColour = sf::Color::White;
 
-	if (level == 0) // Nothing built
+	//if tile is empty
+	if (buildLevel == 0) 
 	{
-		cFill = sf::Color::Green;
-		rectangle.setSize(sf::Vector2f(110, 110));
-		rectangle.setPosition(x * 120 + 5, y * 120 + 5);
-		rectangle.setFillColor(cFill);
+		tileColour = sf::Color::Green;
+		tileRect.setSize(sf::Vector2f(110, 110));
+		tileRect.setPosition(x * 120 + 5, y * 120 + 5);
+		tileRect.setFillColor(tileColour);
 
 		if (isOutlined)
 		{
-			rectangle.setOutlineColor(sf::Color::Red);
+			tileRect.setOutlineColor(sf::Color::Red);
 		}
 
-		w.draw(rectangle);
+		w.draw(tileRect);
 	}
 	else
 	{
-		int limit = (level < 4) ? level : 3; // if (level < 4), true - limit == level, false - limit == 3
+		int maxBuildHeight = (buildLevel < 4) ? buildLevel : 3; // if (level < 4), true - limit == level, false - limit == 3
 
-		for (int i = 0; i < limit; i++)
+		for (int i = 0; i < maxBuildHeight; i++)
 		{
 			int size = 110 - (i * 20);
-			rectangle.setSize(sf::Vector2f(size, size));
-			rectangle.setPosition((x * 120) + (i * 10) + 5, (y * 120) + (i * 10) + 5);
-			rectangle.setOutlineColor(cOutline);
-			rectangle.setFillColor(cFill);
-			w.draw(rectangle);
+			tileRect.setSize(sf::Vector2f(size, size));
+			tileRect.setPosition((x * 120) + (i * 10) + 5, (y * 120) + (i * 10) + 5);
+			tileRect.setOutlineColor(tileOutline);
+			tileRect.setFillColor(tileColour);
+			w.draw(tileRect);
 		}
 	}
 
-	if (level == 4)
+	//If tile is at max build height 
+	if (buildLevel == 4)
 	{
 		sf::CircleShape circle(40);
 		circle.setPosition(x * 120 + 20, y * 120 + 20);
@@ -55,11 +57,12 @@ void Tile::DrawTile(sf::RenderWindow& w)
 
 bool Tile::BuildOnTile()
 {
-	std::cout << "Build: " << x << " " << y << " " << level << std::endl;
+	/*std::cout << "Build on: " << x << " " << y << " " << buildLevel << std::endl;*/
 
-	if (level < 4)
+	//increasing build height if less than maximum build height. 
+	if (buildLevel < 4)
 	{
-		level++;
+		buildLevel++;
 		return true;
 	}
 
