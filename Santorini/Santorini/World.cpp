@@ -30,7 +30,12 @@ void World::Setup()
 			boardTilesArr[i][j].buildLevel = 0;
 		}
 	}
+	
+	playerTurn = 0;
 	PlaceWorker();
+	
+	
+	
 	//Making workers exist in game and adding to vector. 
 	/*workers.push_back(Worker(1, 1, 0));
 	workers.push_back(Worker(3, 3, 0));
@@ -38,7 +43,7 @@ void World::Setup()
 	workers.push_back(Worker(1, 3, 1));*/
 	/*numPlayers = players;*/
 
-	playerTurn = 0;
+	
 }
 
 

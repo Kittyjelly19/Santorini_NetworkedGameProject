@@ -70,6 +70,7 @@ public:
 	void SelectWorker(int& player);
 	void MoveWorker(int& player);
 	void Build();
+	bool areMaxWorkersPlaced() { return hasPlacedWorkers; };
 
 	//Tile Checks
 	bool isInRange = true;
