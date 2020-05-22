@@ -4,6 +4,7 @@
 
 #ifndef WORKER_HPP
 #define WORKER_HPP
+#define MAX_NUM_WORKERS 4
 
 class Worker : public Entity
 {

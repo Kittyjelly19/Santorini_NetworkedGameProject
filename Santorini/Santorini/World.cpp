@@ -22,7 +22,7 @@ void World::Setup()
 	
 	bool isBoardDrawn = false;
 	
-	DrawGameBoard();
+	DrawGameLevel();
 	{
 		for (int i = 0; i < numTiles; i++)
 		{
@@ -36,32 +36,24 @@ void World::Setup()
 			
 		}
 		isBoardDrawn = true;
-			{
-				PlaceWorker();
-			}
-
+		
 	}
-	
-	
-	/*playerTurn = 0;*/
-	/*PlaceWorker();*/
-	
-	
-	
-	
-
-	
+	if (isBoardDrawn)
+	{
+		PlaceWorker(playerTurnID);		
+	}
+		
 }
 
 
 //Drawing the game level. 
-void World::DrawGameBoard()
+void World::DrawGameLevel()
 {
 	window.clear();
 
-	for (int x = 0; x < 5; x++)
+	for (int x = 0; x < numTiles; x++)
 	{
-		for (int y = 0; y < 5; y++)
+		for (int y = 0; y < numTiles; y++)
 		{
 			boardTilesArr[x][y].DrawTile(window);
 		}
@@ -84,7 +76,7 @@ void World::Update()
 	switch (currentPState)
 	{
 	case PlayerStates::PlaceWorkerState:
-		PlaceWorker();
+		PlaceWorker(playerTurnID);
 		break;
 	
 	case PlayerStates::SelectWorkerState:
@@ -163,9 +155,9 @@ void World::DrawHoverOutline()
 }
 
 
-void World::PlaceWorker()
+void World::PlaceWorker(int& player)
 {
-	hasPlacedWorkers = false;
+	bool areMaxWorkersPlaced = false;
 
 	playerTurnID = playerTurn % numPlayers;
 
@@ -182,6 +174,7 @@ void World::PlaceWorker()
 			if (!isOccupied())
 			{
 				workers.push_back(Worker(hoveredTile->x, hoveredTile->y, playerTurnID));
+				
 				playerTurn++;
 					
 				isValidMove = true;
@@ -190,12 +183,20 @@ void World::PlaceWorker()
 			{
 				isValidMove = false;
 			}
+			
+			if (workers.size() == (numPlayers * 2 + 1))
+			{
+				areMaxWorkersPlaced = true;
+				
+			}
+			if (areMaxWorkersPlaced)
+			{
+				GameStates runningState = GameStates::PlayState;
+				currentPState = PlayerStates::SelectWorkerState;
+				g->Play();
+			}
 	}
-	if (workers.size() == (numPlayers * 2))
-	{
-		/*hasPlacedWorkers = true;*/
-		/*bool areMaxWorkersPlaced = true;*/
-	}
+	
 }
 
 
@@ -289,6 +290,8 @@ void World::Build()
 		currentPState = PlayerStates::SelectWorkerState;
 	}
 }
+
+
 
 bool World::isInRange()
 {

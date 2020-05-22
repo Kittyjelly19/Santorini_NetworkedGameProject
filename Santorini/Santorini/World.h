@@ -46,7 +46,7 @@ private:
 	int numPlayers = 2;
 	unsigned short playerTurn;
 	int playerTurnID = 0;
-	bool hasPlacedWorkers = false;
+	bool hasPlacedWorker = false;
 	bool isValidMove = true;
 
 	
@@ -59,7 +59,7 @@ public:
 	//Set up world
 	void Setup();
 	void Update();
-	void DrawGameBoard();
+	void DrawGameLevel();
 
 	//Set up mouse
 	bool isMouseClicked = false;
@@ -67,11 +67,11 @@ public:
 	void DrawHoverOutline();
 
 	//Possible Player actions
-	void PlaceWorker();
+	void PlaceWorker(int& player);
 	void SelectWorker(int& player);
 	void MoveWorker(int& player);
 	void Build();
-	bool areMaxWorkersPlaced() { return hasPlacedWorkers; };
+	/*bool areMaxWorkersPlaced = false;*/
 	
 
 	//Tile Checks

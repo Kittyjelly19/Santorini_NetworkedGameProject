@@ -4,7 +4,7 @@
 
 #ifndef GAME_HPP
 #define GAME_HPP
-#define MAX_NUM_PLAYERS 2
+//#define MAX_NUM_PLAYERS 2
 
 //enum for Game states
 enum class GameStates
@@ -23,14 +23,14 @@ private:
 	sf::RenderWindow window;
 	World* world = NULL;
 
-	void SetUpGame();
-	void Play();
+	
 	
 
 public:
 	//Default Game state. 
 	GameStates runningState = GameStates::SetUpGameState;
-
+	void SetUpGame();
+	void Play();
 	Game();
 	~Game();
 

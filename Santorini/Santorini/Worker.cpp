@@ -12,11 +12,11 @@ Worker::~Worker()
 void Worker::Draw(sf::RenderWindow& window)
 {
 	sf::CircleShape circle(40, 40);
-	sf::Color fColor = sf::Color::Blue;
+	sf::Color fColor = sf::Color::Cyan;
 
 	if (playerID == 1)
 	{
-		fColor = sf::Color::Red;
+		fColor = sf::Color::Yellow;
 	}
 
 	circle.setFillColor(fColor);
