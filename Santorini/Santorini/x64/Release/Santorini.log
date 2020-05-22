@@ -1,32 +1,8 @@
-﻿  Worker.cpp
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Worker.cpp(23,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Client.cpp
-  Entity.cpp
-  Game.cpp
-  main.cpp
-  Server.cpp
-  Tile.cpp
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Worker.cpp(23,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(23,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(23,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,40): warning C4244:         with
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,40): warning C4244:         [
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,40): warning C4244:             T=float
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,40): warning C4244:         ]
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,34): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,34): warning C4244:         with
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,34): warning C4244:         [
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,34): warning C4244:             T=float
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(40,34): warning C4244:         ]
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(41,72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(41,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(52,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  World.cpp
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\Tile.cpp(52,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\Santorini\World.cpp(9,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  World.cpp
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\World.cpp(9,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 65 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  0 of 65 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Santorini.vcxproj -> C:\Users\bethan\Desktop\Santorini_t7099112\Santorini\x64\Release\Santorini.exe
+  Santorini.vcxproj -> C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\x64\Release\Santorini.exe

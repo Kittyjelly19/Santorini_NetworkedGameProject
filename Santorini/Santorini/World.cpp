@@ -2,7 +2,7 @@
 #include "Game.h"
 #include <cstdlib>
 #include <iostream>
-//#include <algorithm>
+#include <algorithm>
 
 World::World(sf::RenderWindow& w, Game* g_) : window(w)
 {
@@ -18,30 +18,37 @@ World::~World()
 void World::Setup()
 {
 	DrawHoverOutline();
-	DrawGameBoard();
 	
-	for (int i = 0; i < numTiles; i++)
+	
+	bool isBoardDrawn = false;
+	
+	DrawGameBoard();
 	{
-		for (int j = 0; j < numTiles; j++)
+		for (int i = 0; i < numTiles; i++)
 		{
-			boardTilesArr[i][j].x = i;
-			boardTilesArr[i][j].y = j;
+			for (int j = 0; j < numTiles; j++)
+			{
+				boardTilesArr[i][j].x = i;
+				boardTilesArr[i][j].y = j;
 
-			boardTilesArr[i][j].buildLevel = 0;
+				boardTilesArr[i][j].buildLevel = 0;
+			}
+			
 		}
+		isBoardDrawn = true;
+			{
+				PlaceWorker();
+			}
+
 	}
 	
-	playerTurn = 0;
-	PlaceWorker();
+	
+	/*playerTurn = 0;*/
+	/*PlaceWorker();*/
 	
 	
 	
-	//Making workers exist in game and adding to vector. 
-	/*workers.push_back(Worker(1, 1, 0));
-	workers.push_back(Worker(3, 3, 0));
-	workers.push_back(Worker(3, 1, 1));
-	workers.push_back(Worker(1, 3, 1));*/
-	/*numPlayers = players;*/
+	
 
 	
 }
@@ -52,19 +59,18 @@ void World::DrawGameBoard()
 {
 	window.clear();
 
-	for (int i = 0; i < 5; i++)
+	for (int x = 0; x < 5; x++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (int y = 0; y < 5; y++)
 		{
-			boardTilesArr[i][j].DrawTile(window);
+			boardTilesArr[x][y].DrawTile(window);
 		}
 	}
 
-	//Drawing workers.
-	/*for (int i = 0; i < 4; i++)
+	for (int w = 0; w < workers.size(); w++)
 	{
-		workers[i].Draw(window);
-	}*/
+		workers[w].Draw(window);
+	}
 }
 void World::Update()
 {
@@ -104,7 +110,7 @@ void World::Update()
 
 Tile* World::Hover()
 {
-	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+	sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
 
 	int A = 0;
 	int B = 0;
@@ -115,11 +121,11 @@ Tile* World::Hover()
 		{
 			boardTilesArr[a][b].isOutlined = false;
 
-			if (mousePos.x >= boardTilesArr[a][b].x * 120 + 5)
+			if (mousePosition.x >= boardTilesArr[a][b].x * 120 + 5)
 			{
 				if (a < 4)
 				{
-					if (mousePos.x <= boardTilesArr[a + 1][b].x * 120 + 5)
+					if (mousePosition.x <= boardTilesArr[a + 1][b].x * 120 + 5)
 					{
 						A = a;
 					}
@@ -130,11 +136,11 @@ Tile* World::Hover()
 				}
 			}
 
-			if (mousePos.y >= boardTilesArr[a][b].y * 120 + 5)
+			if (mousePosition.y >= boardTilesArr[a][b].y * 120 + 5)
 			{
 				if (b < 4)
 				{
-					if (mousePos.y <= boardTilesArr[a][b + 1].y * 120 + 5)
+					if (mousePosition.y <= boardTilesArr[a][b + 1].y * 120 + 5)
 					{
 						B = b;
 					}
@@ -172,7 +178,23 @@ void World::PlaceWorker()
 	{
 		isMouseClicked = true;
 
-			Tile* hoveredTile = Hover();
+			hoveredTile = Hover();
+			if (!isOccupied())
+			{
+				workers.push_back(Worker(hoveredTile->x, hoveredTile->y, playerTurnID));
+				playerTurn++;
+					
+				isValidMove = true;
+			}
+			else
+			{
+				isValidMove = false;
+			}
+	}
+	if (workers.size() == (numPlayers * 2))
+	{
+		/*hasPlacedWorkers = true;*/
+		/*bool areMaxWorkersPlaced = true;*/
 	}
 }
 
@@ -192,11 +214,11 @@ void World::SelectWorker(int& player)
 
 		std::cout << "WORKER SELECTED" << std::endl;
 		
-		Tile* hoveredTile = Hover();
+		hoveredTile = Hover();
 
 		for (int i = 0; i < 4; i++)
 		{
-			if ((workers[i].x == hoveredTile->x) && (workers[i].y == hoveredTile->y))
+			if ((workers[i].wx == hoveredTile->x) && (workers[i].wy == hoveredTile->y))
 			{
 				if (player == workers[i].playerID) 
 				{
@@ -230,9 +252,9 @@ void World::MoveWorker(int& player)
 		std::cout << "MOVE" << std::endl;
 		std::cout << playerTurnID << std::endl;
 
-		Tile* currentTile = Hover();
+		hoveredTile = Hover();
 
-		chosenWorker->MoveWorker(currentTile->x, currentTile->y);
+		chosenWorker->MoveWorker(hoveredTile->x, hoveredTile->y);
 		playerMoved = true;
 	}
 
@@ -258,7 +280,7 @@ void World::Build()
 		std::cout << "BUILD" << std::endl;
 		std::cout << playerTurnID << std::endl;
 
-		Tile* hoveredTile = Hover();
+		hoveredTile = Hover();
 	}
 
 	if (hasBuiltOnTile)
@@ -266,4 +288,37 @@ void World::Build()
 		playerTurn++;
 		currentPState = PlayerStates::SelectWorkerState;
 	}
+}
+
+bool World::isInRange()
+{
+	for (int xTiles = -1; xTiles < 2; xTiles++)
+	{
+		if (hoveredTile-> x == chosenWorker-> wx + xTiles)
+		{
+			for (int yTiles = -1; yTiles < 1; yTiles++)
+			{
+				if (hoveredTile->y == chosenWorker->wy + yTiles)
+				{
+					if (isOccupied())
+					{
+						return false;
+					}
+					return true;
+				}
+			}
+		}
+	}
+}
+
+bool World::isOccupied()
+{
+	for (int w = 0; w < workers.size(); w++)
+	{
+		if ((hoveredTile->x == workers[w].wx) && (hoveredTile->y == workers[w].wy))
+		{
+			return true;
+		}
+	}
+	return false;
 }

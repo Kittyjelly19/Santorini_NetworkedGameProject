@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "World.h"
 
@@ -5,6 +6,7 @@
 #define GAME_HPP
 #define MAX_NUM_PLAYERS 2
 
+//enum for Game states
 enum class GameStates
 {
 	MenuState,
@@ -17,6 +19,7 @@ enum class GameStates
 class Game
 {
 private:
+	//World instance and rendering.
 	sf::RenderWindow window;
 	World* world = NULL;
 
@@ -25,6 +28,7 @@ private:
 	
 
 public:
+	//Default Game state. 
 	GameStates runningState = GameStates::SetUpGameState;
 
 	Game();

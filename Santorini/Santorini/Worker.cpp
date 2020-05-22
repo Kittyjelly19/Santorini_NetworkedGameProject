@@ -1,7 +1,7 @@
 #include "Worker.h"
 #include <iostream>
 
-Worker::Worker(unsigned short x_, unsigned short y_, unsigned short p_) : x(x_), y(y_), playerID(p_)
+Worker::Worker(unsigned short x_, unsigned short y_, unsigned short p_) : wx(x_), wy(y_), playerID(p_)
 {
 }
 
@@ -20,13 +20,13 @@ void Worker::Draw(sf::RenderWindow& window)
 	}
 
 	circle.setFillColor(fColor);
-	circle.setPosition(x * 120 + 20, y * 120 + 20);
+	circle.setPosition(wx * 120 + 20, wy * 120 + 20);
 
 	window.draw(circle);
 }
 
 void Worker::MoveWorker(unsigned short i, unsigned short j)
 {
-	x = i;
-	y = j;
+	wx = i;
+	wy = j;
 }

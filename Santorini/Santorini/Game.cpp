@@ -24,6 +24,7 @@ void Game::MainGameLoop()
 
 		window.clear();
 
+		//Possible Running States
 		switch (runningState)
 		{
 		case GameStates::SetUpGameState:

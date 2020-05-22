@@ -15,8 +15,8 @@ public:
 
 	unsigned short playerID;
 
-	unsigned short x;
-	unsigned short y;
+	unsigned short wx;
+	unsigned short wy;
 
 	void Draw(sf::RenderWindow& window);
 	void MoveWorker(unsigned short i, unsigned short j);

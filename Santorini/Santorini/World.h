@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <array>
 #include "Tile.h"
@@ -35,7 +36,7 @@ private:
 	PlayerStates currentPState = PlayerStates::PlaceWorkerState;
 	Worker* chosenWorker = NULL;
 	Tile* hoveredTile = NULL;
-	Tile* builderTile = NULL;
+	
 
 	
 	//Vector storing workers
@@ -46,6 +47,7 @@ private:
 	unsigned short playerTurn;
 	int playerTurnID = 0;
 	bool hasPlacedWorkers = false;
+	bool isValidMove = true;
 
 	
 
@@ -57,7 +59,6 @@ public:
 	//Set up world
 	void Setup();
 	void Update();
-
 	void DrawGameBoard();
 
 	//Set up mouse
@@ -71,10 +72,11 @@ public:
 	void MoveWorker(int& player);
 	void Build();
 	bool areMaxWorkersPlaced() { return hasPlacedWorkers; };
+	
 
 	//Tile Checks
-	bool isInRange = true;
-	bool isOccupied = false;
+	bool isInRange();
+	bool isOccupied();
 	int numTiles = 5;
 };
 #endif
