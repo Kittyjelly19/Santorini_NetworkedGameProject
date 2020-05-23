@@ -12,8 +12,7 @@ class Game;
 //enum for player states
 enum PlayerStates
 {
-
-	
+	PlaceWorker,
 	SelectWorkerState,
 	MoveWorkerState,
 	BuildState,
@@ -73,7 +72,7 @@ public:
 	void MoveWorker(int& player);
 	void Build();
 	bool areMaxWorkersPlaced = false;
-	
+	void WStartGame();
 
 	//Tile Checks
 	bool isInRange();

@@ -7,13 +7,7 @@
 //#define MAX_NUM_PLAYERS 2
 
 //enum for Game states
-enum class GameStates
-{
-	
-	SetUpGameState,
-	PlayState,
-	ExitState
-};
+
 
 
 class Game
@@ -28,15 +22,16 @@ private:
 
 public:
 	//Default Game state. 
-	GameStates runningState = GameStates::SetUpGameState;
+	/*GameStates runningState = GameStates::SetUpGameState;*/
 	void SetUpGame();
 	void Play();
 	Game();
 	~Game();
 
+	
 	//Game
 	void MainGameLoop();
-
+	void StartGame();
 
 
 };

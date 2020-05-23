@@ -6,6 +6,7 @@ int main()
 {
 	Game g;
 
+	g.StartGame();
 	//RenderFunction();
 	g.MainGameLoop();
 

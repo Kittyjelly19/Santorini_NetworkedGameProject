@@ -37,11 +37,11 @@ void World::Setup()
 	
 	numPlayers = 2;
 	
-	PlaceWorker();
-	if (areMaxWorkersPlaced)
+	//PlaceWorker();
+	//if (areMaxWorkersPlaced)
 	{
-		currentPState = SelectWorkerState;
-		GameStates runningState = GameStates::PlayState;
+		currentPState = PlayerStates::PlaceWorker;
+		//GameStates runningState = GameStates::PlayState;
 	}
 	
 }
@@ -69,6 +69,7 @@ void World::DrawGameLevel()
 
 void World::Update()
 {
+	DrawGameLevel();
 	DrawHoverOutline();
 
 	//Player turn
@@ -78,7 +79,9 @@ void World::Update()
 	//Possible Player states.
 	switch (currentPState)
 	{
-	
+	case PlayerStates::PlaceWorker:
+		PlaceWorker();
+		break;
 	
 	case PlayerStates::SelectWorkerState:
 		SelectWorker(playerTurnID);
@@ -193,8 +196,8 @@ void World::PlaceWorker()
 			if (areMaxWorkersPlaced)
 			{
 				std::cout << "Maximum Workers Placed" << std::endl;
-				/*GameStates runningState = GameStates::PlayState;
-				currentPState = PlayerStates::SelectWorkerState;*/
+				//GameStates runningState = GameStates::PlayState;
+				currentPState = PlayerStates::SelectWorkerState;
 			}
 	}
 	
@@ -296,6 +299,40 @@ void World::Build()
 	{
 		playerTurn++;
 		currentPState = PlayerStates::SelectWorkerState;
+	}
+}
+
+void World::WStartGame()
+{
+	
+	{
+		DrawHoverOutline();
+
+
+		DrawGameLevel();
+		{
+			for (int i = 0; i < numTiles; i++)
+			{
+				for (int j = 0; j < numTiles; j++)
+				{
+					boardTilesArr[i][j].x = i;
+					boardTilesArr[i][j].y = j;
+
+					boardTilesArr[i][j].buildLevel = 0;
+				}
+
+			}
+		}
+
+		numPlayers = 2;
+
+		PlaceWorker();
+		if (areMaxWorkersPlaced)
+		{
+			currentPState = SelectWorkerState;
+			
+		}
+
 	}
 }
 

@@ -11,6 +11,11 @@ Game::~Game()
 	delete world;
 }
 
+void Game::StartGame()
+{
+	world->Setup();
+}
+
 void Game::MainGameLoop()
 {
 	while (window.isOpen())
@@ -24,25 +29,7 @@ void Game::MainGameLoop()
 
 		window.clear();
 
-		//Possible Running States
-		switch (runningState)
-		{
-		case GameStates::SetUpGameState:
-			SetUpGame();
-			break;
-		
-		
-		case GameStates::PlayState:
-			Play();
-			break;
-
-
-		case GameStates::ExitState:
-			return;
-
-		default:
-			break;
-		}
+		world->Update();
 
 		window.display();
 	}
