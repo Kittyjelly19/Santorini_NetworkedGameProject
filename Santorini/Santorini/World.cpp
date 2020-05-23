@@ -291,14 +291,15 @@ void World::Build()
 
 		std::cout << "BUILD" << std::endl;
 		std::cout << playerTurnID << std::endl;
-
+		playerTurn++;
 		hoveredTile = Hover();
+		currentPState = PlayerStates::SelectWorkerState;
 	}
 
 	if (hasBuiltOnTile)
 	{
-		playerTurn++;
-		currentPState = PlayerStates::SelectWorkerState;
+		
+		
 	}
 }
 
