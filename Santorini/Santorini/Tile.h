@@ -14,12 +14,11 @@ public:
 	~Tile();
 
 	void DrawTile(sf::RenderWindow& w);
-	bool BuildOnTile();
 
 	unsigned short x;
 	unsigned short y;
 
-	unsigned short buildLevel = 0;
+	
 
 	bool isOutlined = false;
 };

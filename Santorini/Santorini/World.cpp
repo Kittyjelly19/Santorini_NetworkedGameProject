@@ -15,33 +15,17 @@ World::~World()
 {
 }
 
+//Setting up board tiles and worker placement. 
 void World::Setup()
 {
 	DrawHoverOutline();
-	
-	
 	DrawGameLevel();
-	{
-		for (int i = 0; i < numTiles; i++)
-		{
-			for (int j = 0; j < numTiles; j++)
-			{
-				boardTilesArr[i][j].x = i;
-				boardTilesArr[i][j].y = j;
-
-				boardTilesArr[i][j].buildLevel = 0;
-			}
-			
-		}
-	}
 	
 	numPlayers = 2;
 	
-	//PlaceWorker();
-	//if (areMaxWorkersPlaced)
+	if (!areMaxWorkersPlaced)
 	{
 		currentPState = PlayerStates::PlaceWorker;
-		//GameStates runningState = GameStates::PlayState;
 	}
 	
 }
@@ -51,7 +35,7 @@ void World::Setup()
 void World::DrawGameLevel()
 {
 	window.clear();
-
+	//Drawing tiles.
 	for (int x = 0; x < numTiles; x++)
 	{
 		for (int y = 0; y < numTiles; y++)
@@ -60,6 +44,18 @@ void World::DrawGameLevel()
 		}
 	}
 
+	//Duplicating tiles. 
+	for (int i = 0; i < numTiles; i++)
+	{
+		for (int j = 0; j < numTiles; j++)
+		{
+			boardTilesArr[i][j].x = i;
+			boardTilesArr[i][j].y = j;
+
+		}
+
+	}
+	//Drawing workers.
 	for (int w = 0; w < workers.size(); w++)
 	{
 		workers[w].Draw(window);
@@ -67,6 +63,7 @@ void World::DrawGameLevel()
 	
 }
 
+//Update function. 
 void World::Update()
 {
 	DrawGameLevel();
@@ -103,7 +100,7 @@ void World::Update()
 
 
 
-
+//Mouse location to know where to draw hover outline. 
 Tile* World::Hover()
 {
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
@@ -117,9 +114,10 @@ Tile* World::Hover()
 		{
 			boardTilesArr[a][b].isOutlined = false;
 
+			// Hover along Width of the board.
 			if (mousePosition.x >= boardTilesArr[a][b].x * 120 + 5)
 			{
-				if (a < 4)
+				if (a < 2)
 				{
 					if (mousePosition.x <= boardTilesArr[a + 1][b].x * 120 + 5)
 					{
@@ -132,6 +130,7 @@ Tile* World::Hover()
 				}
 			}
 
+			//Hover along length of the board.
 			if (mousePosition.y >= boardTilesArr[a][b].y * 120 + 5)
 			{
 				if (b < 4)
@@ -148,9 +147,10 @@ Tile* World::Hover()
 			}
 		}
 	}
-
+	//Hover across whole board by multiplying length and width. 
 	return &(boardTilesArr[A][B]);
 }
+
 
 void World::DrawHoverOutline()
 {
@@ -161,8 +161,7 @@ void World::DrawHoverOutline()
 
 void World::PlaceWorker()
 {
-	/*bool areMaxWorkersPlaced = false;*/
-
+	
 	playerTurnID = playerTurn % numPlayers;
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -176,6 +175,7 @@ void World::PlaceWorker()
 		std::cout << "Player " << playerTurnID << "has placed their worker" << std::endl;
 		std::cout << "Next players turn" << std::endl;
 			hoveredTile = Hover();
+			//if the tile is not occupied, place a worker and add to the worker vector. 
 			if (!isOccupied())
 			{
 				workers.push_back(Worker(hoveredTile->x, hoveredTile->y, playerTurnID));
@@ -188,16 +188,16 @@ void World::PlaceWorker()
 			{
 				isValidMove = false;
 			}
-			
+			//When workers vector = max_num_workers (so 2 players = 4 workers)
+			//set maximum workers placed. Used to break out of place worker state. 
 			if (workers.size() == (MAX_NUM_WORKERS))
 			{
 				areMaxWorkersPlaced = true;
 			}
-			
+			//Leave place state, move on to select worker state. 
 			if (areMaxWorkersPlaced)
 			{
 				std::cout << "Maximum Workers Placed" << std::endl;
-				//GameStates runningState = GameStates::PlayState;
 				currentPState = PlayerStates::SelectWorkerState;
 			}
 	}
@@ -241,6 +241,7 @@ void World::SelectWorker(int& player)
 					std::cout << "Player 0 = Blue" << std::endl;
 					std::cout << "Player 1 = Yellow" << std::endl;
 					isValidMove = false;
+					
 				}
 			}
 		}
@@ -324,7 +325,6 @@ void World::WStartGame()
 					boardTilesArr[i][j].x = i;
 					boardTilesArr[i][j].y = j;
 
-					boardTilesArr[i][j].buildLevel = 0;
 				}
 
 			}
