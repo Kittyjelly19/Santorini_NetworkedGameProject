@@ -13,11 +13,12 @@ class Game;
 enum PlayerStates
 {
 
-	PlaceWorkerState,
+	
 	SelectWorkerState,
 	MoveWorkerState,
 	BuildState,
 };
+
 
 class World
 {
@@ -33,7 +34,7 @@ private:
 	
 	
 	//Setting default player state and default chosen worker.
-	PlayerStates currentPState = PlayerStates::PlaceWorkerState;
+	PlayerStates currentPState = SelectWorkerState;
 	Worker* chosenWorker = NULL;
 	Tile* hoveredTile = NULL;
 	
@@ -44,7 +45,7 @@ private:
 	
 	//Setting player defaults.
 	int numPlayers = 2;
-	unsigned short playerTurn;
+	unsigned int playerTurn;
 	int playerTurnID = 0;
 	bool hasPlacedWorker = false;
 	bool isValidMove = true;
@@ -67,11 +68,11 @@ public:
 	void DrawHoverOutline();
 
 	//Possible Player actions
-	void PlaceWorker(int& player);
+	void PlaceWorker();
 	void SelectWorker(int& player);
 	void MoveWorker(int& player);
 	void Build();
-	/*bool areMaxWorkersPlaced = false;*/
+	bool areMaxWorkersPlaced = false;
 	
 
 	//Tile Checks

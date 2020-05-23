@@ -54,7 +54,7 @@ void Game::SetUpGame()
 }
 void Game::Play()
 {
-	world->Update();
+	world->Update(); 
 	world->DrawGameLevel();
 }
 

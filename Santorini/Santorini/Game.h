@@ -9,7 +9,7 @@
 //enum for Game states
 enum class GameStates
 {
-	MenuState,
+	
 	SetUpGameState,
 	PlayState,
 	ExitState

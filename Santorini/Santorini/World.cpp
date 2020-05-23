@@ -20,8 +20,6 @@ void World::Setup()
 	DrawHoverOutline();
 	
 	
-	bool isBoardDrawn = false;
-	
 	DrawGameLevel();
 	{
 		for (int i = 0; i < numTiles; i++)
@@ -35,14 +33,17 @@ void World::Setup()
 			}
 			
 		}
-		isBoardDrawn = true;
-		
 	}
-	if (isBoardDrawn)
+	
+	numPlayers = 2;
+	
+	PlaceWorker();
+	if (areMaxWorkersPlaced)
 	{
-		PlaceWorker(playerTurnID);		
+		currentPState = SelectWorkerState;
+		GameStates runningState = GameStates::PlayState;
 	}
-		
+	
 }
 
 
@@ -63,7 +64,9 @@ void World::DrawGameLevel()
 	{
 		workers[w].Draw(window);
 	}
+	
 }
+
 void World::Update()
 {
 	DrawHoverOutline();
@@ -75,9 +78,7 @@ void World::Update()
 	//Possible Player states.
 	switch (currentPState)
 	{
-	case PlayerStates::PlaceWorkerState:
-		PlaceWorker(playerTurnID);
-		break;
+	
 	
 	case PlayerStates::SelectWorkerState:
 		SelectWorker(playerTurnID);
@@ -155,9 +156,9 @@ void World::DrawHoverOutline()
 }
 
 
-void World::PlaceWorker(int& player)
+void World::PlaceWorker()
 {
-	bool areMaxWorkersPlaced = false;
+	/*bool areMaxWorkersPlaced = false;*/
 
 	playerTurnID = playerTurn % numPlayers;
 
@@ -169,7 +170,7 @@ void World::PlaceWorker(int& player)
 	if ((!isMouseClicked) && (!sf::Mouse::isButtonPressed(sf::Mouse::Left)))
 	{
 		isMouseClicked = true;
-
+		std::cout << "worker placed" << std::endl;
 			hoveredTile = Hover();
 			if (!isOccupied())
 			{
@@ -184,16 +185,16 @@ void World::PlaceWorker(int& player)
 				isValidMove = false;
 			}
 			
-			if (workers.size() == (numPlayers * 2 + 1))
+			if (workers.size() == (MAX_NUM_WORKERS))
 			{
 				areMaxWorkersPlaced = true;
-				
 			}
+			
 			if (areMaxWorkersPlaced)
 			{
-				GameStates runningState = GameStates::PlayState;
-				currentPState = PlayerStates::SelectWorkerState;
-				g->Play();
+				std::cout << "Maximum Workers Placed" << std::endl;
+				/*GameStates runningState = GameStates::PlayState;
+				currentPState = PlayerStates::SelectWorkerState;*/
 			}
 	}
 	
@@ -213,19 +214,26 @@ void World::SelectWorker(int& player)
 	{
 		isMouseClicked = true;
 
-		std::cout << "WORKER SELECTED" << std::endl;
+		
 		
 		hoveredTile = Hover();
 
-		for (int i = 0; i < 4; i++)
+		for (int w = 0; w < workers.size(); w++)
 		{
-			if ((workers[i].wx == hoveredTile->x) && (workers[i].wy == hoveredTile->y))
+			if ((workers[w].wx == hoveredTile->x) && (workers[w].wy == hoveredTile->y))
 			{
-				if (player == workers[i].playerID) 
+				if (player == workers[w].playerID) 
 				{
+					std::cout << "worker selected" << std::endl;
+					isValidMove = true;
 					hasChosenWorker = true;
-					chosenWorker = &workers[i];
+					chosenWorker = &workers[w];
 					break;
+				}
+				else
+				{
+					std::cout << "Not your builder" << std::endl;
+					isValidMove = false;
 				}
 			}
 		}
