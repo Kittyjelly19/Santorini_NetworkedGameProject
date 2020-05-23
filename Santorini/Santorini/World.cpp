@@ -173,7 +173,8 @@ void World::PlaceWorker()
 	if ((!isMouseClicked) && (!sf::Mouse::isButtonPressed(sf::Mouse::Left)))
 	{
 		isMouseClicked = true;
-		std::cout << "worker placed" << std::endl;
+		std::cout << "Player " << playerTurnID << "has placed their worker" << std::endl;
+		std::cout << "Next players turn" << std::endl;
 			hoveredTile = Hover();
 			if (!isOccupied())
 			{
@@ -227,7 +228,8 @@ void World::SelectWorker(int& player)
 			{
 				if (player == workers[w].playerID) 
 				{
-					std::cout << "worker selected" << std::endl;
+					std::cout << "Player " <<playerTurnID<< " has selected their worker!"<< std::endl;
+					std::cout << "Player " << playerTurnID << " Choose a space to move to!" << std::endl;
 					isValidMove = true;
 					hasChosenWorker = true;
 					chosenWorker = &workers[w];
@@ -235,7 +237,9 @@ void World::SelectWorker(int& player)
 				}
 				else
 				{
-					std::cout << "Not your builder" << std::endl;
+					std::cout << "That's Not your builder!" << std::endl;
+					std::cout << "Player 0 = Blue" << std::endl;
+					std::cout << "Player 1 = Yellow" << std::endl;
 					isValidMove = false;
 				}
 			}
@@ -260,9 +264,9 @@ void World::MoveWorker(int& player)
 	if ((!isMouseClicked) && (sf::Mouse::isButtonPressed(sf::Mouse::Left)))
 	{
 		isMouseClicked = true;
-
-		std::cout << "MOVE" << std::endl;
-		std::cout << playerTurnID << std::endl;
+		std::cout <<"Player "<< playerTurnID <<" has moved their worker"<< std::endl;
+		std::cout << "Player " << playerTurnID<< " Choose somewhere to build!"<<std::endl;
+		
 
 		hoveredTile = Hover();
 
@@ -288,9 +292,10 @@ void World::Build()
 	if ((!isMouseClicked) && (sf::Mouse::isButtonPressed(sf::Mouse::Left)))
 	{
 		isMouseClicked = true;
-
-		std::cout << "BUILD" << std::endl;
-		std::cout << playerTurnID << std::endl;
+		
+		std::cout << "Player " << playerTurnID << " is done building!" << std::endl;
+		std::cout << "Next players turn" << std::endl;
+		
 		playerTurn++;
 		hoveredTile = Hover();
 		currentPState = PlayerStates::SelectWorkerState;

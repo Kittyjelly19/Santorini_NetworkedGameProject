@@ -1,4 +1,4 @@
 ﻿  World.cpp
 C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\World.cpp(9,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\World.cpp(361): warning C4715: 'World::isInRange': not all control paths return a value
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\World.cpp(366): warning C4715: 'World::isInRange': not all control paths return a value
   Santorini.vcxproj -> C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\x64\Debug\Santorini.exe
