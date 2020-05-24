@@ -167,6 +167,7 @@
     <ClCompile Include="Network.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Receiver.cpp" />
+    <ClCompile Include="Util.cpp" />
     <ClCompile Include="Worker.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Network.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Receiver.h" />
+    <ClInclude Include="Util.h" />
     <ClInclude Include="Worker.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Entity.h" />
