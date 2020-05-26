@@ -4,6 +4,7 @@
 #include <sstream>
 #include <thread>
 
+Client* Client::client{ nullptr };
 
 Client::Client()
 {
@@ -26,6 +27,16 @@ bool Client::StartClient(sf::IpAddress& ip)
 	}
 		
 	
+}
+
+Client& Client:: GetCInstance()
+{
+	if (client == nullptr)
+	{
+		client = new Client;
+	}
+	//return client instance.
+	return *client;
 }
 
 void Client::FindClients()

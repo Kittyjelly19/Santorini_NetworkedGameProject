@@ -21,8 +21,8 @@ public:
 	bool connectClient();
 	bool StartGame();
 
-	void Run();
-	void Receive();
-	void SendToServer();
+	//void Run();
+	//void Receive();
+	//void SendToServer();
 };
 

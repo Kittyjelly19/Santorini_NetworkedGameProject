@@ -4,7 +4,7 @@
 #include "Message.h"
 #include "Util.h"
 
-#define PORT (unsigned short) 4300
+#define PORT (unsigned short) 4200
 
 
 
@@ -27,11 +27,12 @@ public:
 	Client();
 	~Client();
 	sf::TcpSocket socket;
-	Client* client;
+	static Client* client;
+	static Client& GetCInstance();
 
 	bool StartClient(sf::IpAddress& ip);
 	bool ready;
-
+	
 
 	void RunClientListener();
 	void ConnectClientToHost();
@@ -45,3 +46,4 @@ public:
 
 	
 };
+#define CLIENT Client::GetCInstance()

@@ -16,11 +16,11 @@ int main()
 
 	if (connectionType == 's')
 	{
-		Server& StartServer();
+		SERVER.StartServer();
 	}
 	else if (connectionType == 'c')
-	{
-		Client& RunClientListener();
+	{/*
+		CLIENT.StartClient();*/
 	}
 
 	/*SERVER.StartServer();*/

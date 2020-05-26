@@ -1,6 +1,34 @@
-﻿  Server.cpp
+﻿  Acceptor.cpp
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Server.h(48,1): warning C4005: 'PORT': macro redefinition
+  Network.cpp
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Network.h(7,1): warning C4005: 'PORT': macro redefinition
+  Receiver.cpp
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Server.h(48,1): warning C4005: 'PORT': macro redefinition
+  Client.cpp
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
+  main.cpp
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
 C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
 C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
 C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Server.h(48,1): warning C4005: 'PORT': macro redefinition
 C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Network.h(7,1): warning C4005: 'PORT': macro redefinition
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Server.h(48): message : see previous definition of 'PORT'
+  Server.cpp
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\main.cpp(11,23): warning C4101: 'mode': unreferenced local variable
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Server.h(48,1): warning C4005: 'PORT': macro redefinition
+  Generating Code...
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.cpp(30): warning C4715: 'Client::StartClient': not all control paths return a value
   Santorini.vcxproj -> C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\x64\Debug\Santorini.exe
