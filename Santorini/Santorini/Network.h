@@ -12,6 +12,7 @@ class Network
 private:
 	sf::IpAddress s_IPAddress;
 	Client client;
+	
 
 	int numPlayers = 0;
 public:

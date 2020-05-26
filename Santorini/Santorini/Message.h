@@ -48,12 +48,14 @@ struct RegistrationMsg
 sf::Packet& operator << (sf::Packet& packet, const RegistrationMsg msg);
 sf::Packet& operator >> (sf::Packet& packet, RegistrationMsg& msg);
 
+//Structure of StartGame Message contents.
 struct StartGameMsg
 {
 	MessageType msgtype = MessageType::StartGameMsg;
 
 };
 
+//Overload operators for Start game message. 
 sf::Packet& operator << (sf::Packet& packet, const StartGameMsg msg);
 sf::Packet& operator >> (sf::Packet& packet, StartGameMsg& msg);
 
@@ -62,17 +64,5 @@ typedef std::pair<sf::Packet, std::shared_ptr<sf::TcpSocket>> Message;
 void ReadMessage(Message m, MsgConstruct& msg);
 
 
-//class Message
-//{
-//private:
-//public:
-//	Message();
-//	~Message();
-//
-//	sf::Packet packet;
-//	std::shared_ptr<sf::TcpSocket> client;
-//	
-//	//default message type is undefined. 
-//	MessageType messageType = MessageType::Undefined;
-//};
+
 

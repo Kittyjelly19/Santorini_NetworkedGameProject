@@ -1,4 +1,7 @@
-﻿  Message.cpp
-main.obj : error LNK2019: unresolved external symbol "public: void __cdecl Server::StartServer(void)" (?StartServer@Server@@QEAAXXZ) referenced in function main
+﻿  Server.cpp
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Server.h(48,1): warning C4005: 'PORT': macro redefinition
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7): message : see previous definition of 'PORT'
 Server.obj : error LNK2019: unresolved external symbol "public: __cdecl Acceptor::Acceptor(class Queue<struct std::pair<class sf::Packet,class std::shared_ptr<class sf::TcpSocket> > > &)" (??0Acceptor@@QEAA@AEAV?$Queue@U?$pair@VPacket@sf@@V?$shared_ptr@VTcpSocket@sf@@@std@@@std@@@@@Z) referenced in function "void __cdecl std::_Construct_in_place<class Acceptor,class Queue<struct std::pair<class sf::Packet,class std::shared_ptr<class sf::TcpSocket> > > &>(class Acceptor &,class Queue<struct std::pair<class sf::Packet,class std::shared_ptr<class sf::TcpSocket> > > &)" (??$_Construct_in_place@VAcceptor@@AEAV?$Queue@U?$pair@VPacket@sf@@V?$shared_ptr@VTcpSocket@sf@@@std@@@std@@@@@std@@YAXAEAVAcceptor@@AEAV?$Queue@U?$pair@VPacket@sf@@V?$shared_ptr@VTcpSocket@sf@@@std@@@std@@@@@Z)
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\x64\Debug\Santorini.exe : fatal error LNK1120: 2 unresolved externals
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\x64\Debug\Santorini.exe : fatal error LNK1120: 1 unresolved externals

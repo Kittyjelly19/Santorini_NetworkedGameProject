@@ -8,8 +8,8 @@ private:
 	Queue<Message>& queue;
 public:
 	Acceptor(Queue < Message>& q);
-	/*~Acceptor();*/
 
-	void AcceptConnection();
+
+	void ConnectionAccepted();
 };
 

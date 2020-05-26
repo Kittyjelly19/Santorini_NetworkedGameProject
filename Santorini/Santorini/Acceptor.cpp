@@ -1,6 +1,6 @@
 #include "Acceptor.h"
 
-void Acceptor::AcceptConnection()
+void Acceptor::ConnectionAccepted()
 {
 	sf::TcpListener listener;
 	if (listener.listen(PORT) != sf::Socket::Done)

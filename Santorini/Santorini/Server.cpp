@@ -52,8 +52,8 @@ void StartServer()
 
 	do
 	{
-		std::shared_ptr<Acceptor> accepter = std::make_shared<Acceptor>(queue);
-		std::thread(&Acceptor::AcceptConnection, accepter).detach();
+		std::shared_ptr<Acceptor> acceptor = std::make_shared<Acceptor>(queue);
+		std::thread(&Acceptor::ConnectionAccepted, acceptor).detach();
 
 		Message m = queue.pop();
 		MsgConstruct msg;
