@@ -163,9 +163,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Acceptor.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="Network.cpp" />
-    <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Receiver.cpp" />
     <ClCompile Include="Util.cpp" />
     <ClCompile Include="Worker.cpp" />
@@ -178,6 +178,7 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Acceptor.h" />
     <ClInclude Include="Message.h" />
     <ClInclude Include="Network.h" />
     <ClInclude Include="Queue.h" />

@@ -1,33 +1,46 @@
 #pragma once
 #include <SFML/Network.hpp>
 #include <SFML/Graphics.hpp>
+#include "Message.h"
+#include "Util.h"
+
+#define PORT (unsigned short) 4300
 
 
 
 
-using namespace std;
-
-//Client Packet
-enum ClientPacket
-{
-	PlayerTurn,
-	UpdateBoard,
-	MoveUpdate,
-	GameEvent,
-	Exit
-};
 
 class Client
 {
+private:
+
+	sf::IpAddress s_IPAdress;
+	bool isClientsTurn = false;
+	bool isHostingLocally = false;
+	bool ContinueListening = true;
+	
+
+
+
 public:
 
 	Client();
 	~Client();
+	sf::TcpSocket socket;
 
-	bool RunningClient(unsigned short port);
+	bool StartClient(sf::IpAddress& ip);
+	bool ready;
 
-private:
 
-	sf::IpAddress s_Name;
-	sf::TcpSocket clientSocket;
+	void RunClientListener();
+	void ConnectClientToHost();
+	void RequestConnection(const std::string& ip);
+	void FindClients();
+
+	/*void FindClients();*/
+	void SendMsg();
+	bool ReceiveMsg();
+
+
+	
 };
