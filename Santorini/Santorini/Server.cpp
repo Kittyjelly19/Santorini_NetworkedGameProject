@@ -42,31 +42,36 @@ Server& Server::GetSInstance()
 	{
 		server = new Server;
 	}
+	//return server instance.
 	return *server;
 }
 
+//Main server function.
 void StartServer()
 {
 	Queue <Message> queue;
 	bool stopServerListening = false;
 
-	do
+	while (!stopServerListening)
 	{
+		Message m = queue.pop();
+		MsgConstruct msg;
+		ReadMessage(m, msg);
+
 		std::shared_ptr<Acceptor> acceptor = std::make_shared<Acceptor>(queue);
 		std::thread(&Acceptor::ConnectionAccepted, acceptor).detach();
 
-		Message m = queue.pop();
-		MsgConstruct msg;
+		
 
-		ReadMessage(m, msg);
-
+		//switch statement for message types. 
 		switch (msg.msgtype)
 		{
-		case MessageType::StartGameMsg:
-			std::string startgame;
-			startgame = msg.data;
-			std::cout << "server message pop: " << startgame << std::endl;
+		case MessageType::RegisterMsg:
+			std::string reg;
+			reg = msg.data;
+			std::cout << "server message pop: " << reg << std::endl;
 			break;
 		}
-	} while (!stopServerListening);
+	}
+	
 }

@@ -18,7 +18,7 @@ int main()
 	{
 		Server& StartServer();
 	}
-	else if (connectionType = 'c')
+	else if (connectionType == 'c')
 	{
 		Client& RunClientListener();
 	}
