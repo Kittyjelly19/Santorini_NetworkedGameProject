@@ -31,8 +31,8 @@ bool Client::StartClient(sf::IpAddress& ip)
 void Client::FindClients()
 {
 	sf::Packet packet;
-	int test = 1;
-	packet << test;
+	int RegMsg = 1;
+	packet << RegMsg;
 	socket.send(packet);
 }
 

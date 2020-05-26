@@ -26,9 +26,9 @@ int main()
 	/*SERVER.StartServer();*/
 	Game g;
 
-	g.StartGame();
-	//RenderFunction();
-	g.MainGameLoop();
+	//g.StartGame();
+	////RenderFunction();
+	//g.MainGameLoop();
 
 	return 0;
 }

@@ -1,5 +1,11 @@
 #include "Acceptor.h"
 
+
+
+Acceptor::Acceptor(Queue<Message>& q) : queue(q)
+{
+}
+
 void Acceptor::ConnectionAccepted()
 {
 	sf::TcpListener listener;

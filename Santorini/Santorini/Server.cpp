@@ -23,6 +23,7 @@
 //}
 
 #include "Server.h"
+#include "Client.h"
 #include <iostream>
 #include <sstream>
 #include <thread>
@@ -37,6 +38,8 @@ Server::Server()
 
 
 
+
+
 //if server instance is not assigned to anything, create a new server instance. 
 Server& Server::GetSInstance()
 {
@@ -46,6 +49,46 @@ Server& Server::GetSInstance()
 	}
 	//return server instance.
 	return *server;
+}
+
+
+
+void Server::StartServer()
+{
+	Queue <Message> queue;
+	bool stopServerListening = false;
+
+	while (!stopServerListening)
+	{
+		std::shared_ptr<Acceptor> acceptor = std::make_shared<Acceptor>(queue);
+		std::thread(&Acceptor::ConnectionAccepted, acceptor).detach();
+
+		Message m = queue.pop();
+		MsgConstruct msg;
+		ReadMessage(m, msg);
+
+
+		//switch statement for message types. 
+		switch (msg.msgtype)
+		{
+		case MessageType::RegisterMsg:
+			std::string registration;
+			registration = msg.data;
+			std::cout << "server message: " << registration << std::endl;
+			break;
+		}
+	}
+}
+
+void Server::StartGame()
+{
+	sf::Packet packet;
+	packet << (int)MessageType::StartGameMsg;
+	
+	//for (auto& c : clients)
+	//{
+	//	/*Client* client.SendMsg;*/
+	//}
 }
 //void Server::StartServer()
 //{
@@ -72,34 +115,3 @@ Server& Server::GetSInstance()
 //void Server::SendPacket(MessageType mType, sf::Vector2f pos, int ID)
 //{
 //}
-
-//Main server function.
-void StartServer()
-{
-	Queue <Message> queue;
-	bool stopServerListening = false;
-
-	while (!stopServerListening)
-	{
-		Message m = queue.pop();
-		MsgConstruct msg;
-		ReadMessage(m, msg);
-
-		std::shared_ptr<Acceptor> acceptor = std::make_shared<Acceptor>(queue);
-		std::thread(&Acceptor::ConnectionAccepted, acceptor).detach();
-
-		
-
-		//switch statement for message types. 
-		switch (msg.msgtype)
-		{
-		case MessageType::RegisterMsg:
-			std::string reg;
-			reg = msg.data;
-			std::cout << "server message pop: " << reg << std::endl;
-			break;
-		}
-	}
-	
-}
-

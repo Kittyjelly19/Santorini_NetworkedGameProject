@@ -27,6 +27,7 @@ public:
 	Client();
 	~Client();
 	sf::TcpSocket socket;
+	Client* client;
 
 	bool StartClient(sf::IpAddress& ip);
 	bool ready;
