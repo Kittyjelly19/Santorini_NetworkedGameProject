@@ -58,6 +58,7 @@ class Server
 public:
 	
 	void StartServer();
+	void StartGame();
 
 	//Getting a static instance of the server. 
 	static Server& GetSInstance();
@@ -65,7 +66,7 @@ public:
 	//Adding a client to the server.
 	/*void AddClient(unsigned short& clientID, std::shared_ptr<sf::TcpSocket>& clientSocket) { clients.insert(Client(clientID, clientSocket)); };*/
 	
-	void SendPacket(MessageType mType, sf::Vector2f pos = sf::Vector2f(0, 0), int ID = -1);
+	/*void SendPacket(MessageType mType, sf::Vector2f pos = sf::Vector2f(0, 0), int ID = -1);*/
 	
 
 private:

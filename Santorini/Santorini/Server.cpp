@@ -35,6 +35,8 @@ Server::Server()
 	s_IPAddress = s_IPAddress.getLocalAddress();
 }
 
+
+
 //if server instance is not assigned to anything, create a new server instance. 
 Server& Server::GetSInstance()
 {
@@ -45,6 +47,31 @@ Server& Server::GetSInstance()
 	//return server instance.
 	return *server;
 }
+//void Server::StartServer()
+//{
+//	std::thread tcpListenerThread([&]() {
+//		sf::TcpListener listener;
+//
+//		while (clients.size() < 2) {
+//			std::cout << "waiting for client" << std::endl;
+//			sf::TcpSocket* newClient = new sf::TcpSocket();
+//			sf::Packet packet;
+//
+//			listener.listen(PORT);
+//			sf::Socket::Status socketStatus = listener.accept(*newClient);
+//
+//			while (socketStatus == newClient->Disconnected || socketStatus == newClient->Error) {
+//				socketStatus = listener.accept(*newClient);
+//			}
+//			std::cout << "new client: " << newClient->getRemoteAddress() << std::endl;
+//			clients.insert(newClient);
+//		}
+//		}
+//}
+
+//void Server::SendPacket(MessageType mType, sf::Vector2f pos, int ID)
+//{
+//}
 
 //Main server function.
 void StartServer()
@@ -75,3 +102,4 @@ void StartServer()
 	}
 	
 }
+
