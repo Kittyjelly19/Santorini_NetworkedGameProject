@@ -7,7 +7,7 @@ Network::Network(std::string& ip, unsigned int& players)
 }
 bool Network::connectClient()
 {
-	if (!client.StartClient(s_IPAddress))
+	if (!client.StartClient(PORT))
 	{
 		std::cerr << "failed to connect to client" << std::endl;
 		return false;

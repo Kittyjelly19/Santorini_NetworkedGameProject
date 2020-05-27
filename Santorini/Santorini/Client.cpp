@@ -14,19 +14,26 @@ Client::~Client()
 {
 }
 
-bool Client::StartClient(sf::IpAddress& ip)
+bool Client::StartClient(unsigned short port)
 {
+	
 	sf::IpAddress server;
-	server = ip;
+	
+	do
+	{
+		std::cout << "Type the server address: " << std::endl;
+		std::cin >> server;
+	} while (server == sf::IpAddress::None);
+	
 
-	if (socket.connect(server, PORT) != sf::Socket::Done)
+	if (socket.connect(server, port) != sf::Socket::Done)
 	{
 		return false;
 		std::cout << "Connected to server" << server << socket.getRemotePort() << std::endl;
-		return true;
+	/*	return true;*/
 	}
 		
-	
+	return true;
 }
 
 Client& Client:: GetCInstance()

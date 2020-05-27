@@ -19,16 +19,16 @@ int main()
 		SERVER.StartServer();
 	}
 	else if (connectionType == 'c')
-	{/*
-		CLIENT.StartClient();*/
+	{
+		CLIENT.StartClient(PORT);
 	}
 
-	/*SERVER.StartServer();*/
+	
 	Game g;
 
-	//g.StartGame();
+	g.StartGame();
 	////RenderFunction();
-	//g.MainGameLoop();
+	g.MainGameLoop();
 
 	return 0;
 }

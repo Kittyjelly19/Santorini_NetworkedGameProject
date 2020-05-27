@@ -30,7 +30,7 @@ public:
 	static Client* client;
 	static Client& GetCInstance();
 
-	bool StartClient(sf::IpAddress& ip);
+	bool StartClient(unsigned short port);
 	bool ready;
 	
 

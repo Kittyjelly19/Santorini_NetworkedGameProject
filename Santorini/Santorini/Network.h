@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Client.h"
 
-#define PORT (unsigned short) 4300
+#define PORT (unsigned short) 4500
 
 
 class Network
@@ -21,8 +21,5 @@ public:
 	bool connectClient();
 	bool StartGame();
 
-	//void Run();
-	//void Receive();
-	//void SendToServer();
 };
 
