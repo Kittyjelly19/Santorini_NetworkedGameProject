@@ -15,11 +15,7 @@ bool Network::connectClient()
 	return true;
 }
 
-bool Network::StartGame()
-{
-	if (numPlayers == 2)
-	{
-		return true;
-	}
-	return false;
-}
+//bool Network::StartGame()
+//{
+//	
+//}

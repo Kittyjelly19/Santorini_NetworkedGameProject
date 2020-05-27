@@ -1,13 +1,5 @@
-﻿  Network.cpp
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Network.h(7,1): warning C4005: 'PORT': macro redefinition
-  main.cpp
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7): message : see previous definition of 'PORT'
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7,1): warning C4005: 'PORT': macro redefinition
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Util.h(6): message : see previous definition of 'PORT'
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Server.h(48,1): warning C4005: 'PORT': macro redefinition
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Client.h(7): message : see previous definition of 'PORT'
+﻿  Acceptor.cpp
+  Server.cpp
   Generating Code...
-C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\main.cpp(11,23): warning C4101: 'mode': unreferenced local variable
+C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\Santorini\Server.cpp(34,13): warning C4551: function call missing argument list
   Santorini.vcxproj -> C:\Users\bethan\Documents\GitHub\Santorini_t7099112\Santorini\x64\Debug\Santorini.exe

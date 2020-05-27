@@ -5,9 +5,11 @@
 class Acceptor
 {
 private:
+	 
 	Queue<Message>& queue;
 public:
-	Acceptor(Queue < Message>& q);
+	//Queue for storing accepted messages
+	Acceptor(Queue < Message>& msgq);
 
 
 	void ConnectionAccepted();

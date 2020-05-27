@@ -9,6 +9,7 @@ class Entity
 private:
 
 public:
+	//Basic entity variables. 
 	sf::Shape* shape;
 	sf::Color color;
 

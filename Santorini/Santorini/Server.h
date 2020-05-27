@@ -1,40 +1,3 @@
-//#pragma once
-//#include <SFML/Network.hpp>
-//#include "Client.h"
-
-//using namespace sf;
-//
-////Assigning a port number to server
-//const unsigned short ServerPortID = 1500;
-//
-//
-//
-////Server Packet
-////enum ServerPacket
-////{
-////	BroadcastMessage,
-////	StartingState,
-////	PlayerTurnMove,
-////	UpdateBoards,
-////	PlayerJoin,
-////	PlayerLeave,
-////	UpdateClient
-////
-////};
-//
-//
-//
-//
-//
-//class Server
-//{
-//private:
-//	SocketSelector c_selector;
-//	std::vector<TcpSocket*> c_Sockets;
-//public:
-//	/*void RunServerListen();
-//	void InstigateGame();*/
-//};
 
 #pragma once
 #include <SFML/Network.hpp>
@@ -45,7 +8,7 @@
 #include "Acceptor.h"
 
 //Defining server port. 
-#define PORT (unsigned short) 4500
+#define S_PORT (unsigned short) 4500
 
 
 
@@ -63,10 +26,7 @@ public:
 	//Getting a static instance of the server. 
 	static Server& GetSInstance();
 
-	//Adding a client to the server.
-	/*void AddClient(unsigned short& clientID, std::shared_ptr<sf::TcpSocket>& clientSocket) { clients.insert(Client(clientID, clientSocket)); };*/
 	
-	/*void SendPacket(MessageType mType, sf::Vector2f pos = sf::Vector2f(0, 0), int ID = -1);*/
 	
 
 private:

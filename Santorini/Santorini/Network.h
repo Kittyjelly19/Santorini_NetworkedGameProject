@@ -14,11 +14,13 @@ private:
 	Client client;
 	
 
-	int numPlayers = 0;
+	int numPlayers = 2;
 public:
 	Network(std::string& ip, unsigned int& players);
-
+	//Connecting the client
 	bool connectClient();
+	
+	//Running the game through the network. 
 	bool StartGame();
 
 };

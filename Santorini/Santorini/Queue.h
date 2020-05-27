@@ -20,7 +20,7 @@ public:
 		return val;
 	}
 
-	void pop(T& item) // pop will not wait when queue is empty.
+	void pop(T& item) //  when queue is empty- pop will not wait.
 	{
 		std::unique_lock<std::mutex> mlock(mutex_);
 		if (queue_.empty())
@@ -30,7 +30,7 @@ public:
 		item = queue_.front();
 		queue_.pop();
 	}
-
+	//Pushing messages into queue.
 	void push(const T& item)
 	{
 		std::unique_lock<std::mutex> mlock(mutex_);

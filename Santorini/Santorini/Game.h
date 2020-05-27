@@ -4,9 +4,7 @@
 
 #ifndef GAME_HPP
 #define GAME_HPP
-//#define MAX_NUM_PLAYERS 2
 
-//enum for Game states
 
 
 

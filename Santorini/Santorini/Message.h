@@ -5,8 +5,9 @@
 #include <iostream>
 #include <memory>
 #include <sstream>
-#include "Util.h"
+//#include "Util.h"
 
+//enum for message types. 
 enum class MessageType : sf::Uint8
 {
 	RegisterMsg = 1,
@@ -58,6 +59,7 @@ struct StartGameMsg
 //Overload operators for Start game message. 
 sf::Packet& operator << (sf::Packet& packet, const StartGameMsg msg);
 sf::Packet& operator >> (sf::Packet& packet, StartGameMsg& msg);
+
 
 typedef std::pair<sf::Packet, std::shared_ptr<sf::TcpSocket>> Message;
 

@@ -20,7 +20,8 @@ int main()
 	}
 	else if (connectionType == 'c')
 	{
-		CLIENT.StartClient(PORT);
+		CLIENT.StartClient(C_PORT);
+		
 	}
 
 	

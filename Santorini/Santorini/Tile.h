@@ -19,7 +19,7 @@ public:
 	unsigned short y;
 
 	
-
+	//Set defualt tile outline. 
 	bool isOutlined = false;
 };
 

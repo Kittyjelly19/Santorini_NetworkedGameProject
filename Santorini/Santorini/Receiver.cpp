@@ -4,6 +4,7 @@ Receiver::Receiver(std::shared_ptr<sf::TcpSocket> clientSocket, Queue<Message>& 
 {
 }
 
+//Recieving packets. 
 void Receiver::MsgReceive()
 {
 	while (true)
@@ -11,10 +12,11 @@ void Receiver::MsgReceive()
 		sf::Packet packet;
 		if (client->receive(packet) != sf::Socket::Done)
 		{
-			std::cerr << "failed to recieve packet." << std::endl;
+			std::cerr << "Error- Could not recieve packet!" << std::endl;
 		}
 		Message m(packet, client);
-		std::cout << "received:" << packet << std::endl;
+		std::cout << "Packet successfully received: " << packet << std::endl;
+		//Pushing message into queue. 
 		queue.push(m);
 	}
 }
