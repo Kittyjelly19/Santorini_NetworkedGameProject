@@ -59,6 +59,7 @@ void ReadMessage(Message m, MsgConstruct& msg)
 	m.first >> msg.msgtype;
 		switch (msg.msgtype)
 		{
+			//Register message type.
 		case MessageType::RegisterMsg:
 			m_registration = new RegistrationMsg();
 			if (m.first >> m_registration->id >> m_registration->username)
@@ -71,7 +72,7 @@ void ReadMessage(Message m, MsgConstruct& msg)
 			}
 			delete m_registration;
 			break;
-
+			//Start game message type. 
 		case MessageType::StartGameMsg:
 			Game* Setup();
 			break;

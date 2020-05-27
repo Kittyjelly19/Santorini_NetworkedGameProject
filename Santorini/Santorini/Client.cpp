@@ -1,5 +1,6 @@
 #include "Client.h"
 #include "Server.h"
+#include "Game.h"
 #include <iostream>
 #include <sstream>
 #include <thread>
@@ -29,13 +30,15 @@ bool Client::StartClient(unsigned short port)
 	if (cSocket.connect(server, S_PORT) != sf::Socket::Done)
 	{
 		return false;
-		std::cout << "Connected to server" << server << cSocket.getRemotePort() << std::endl;
-		return true;
+		/*std::cout << "Connected to server" << server << cSocket.getRemotePort() << std::endl;*/
+		/*return true;*/
 	}
 	else
 	{
-		std::cout << "could not connect to server." << std::endl;
+		std::cout << "Successfully Connected to Server!!." << std::endl;
+		Game* StartGame();
 	}
+	
 	
 }
 
@@ -50,26 +53,4 @@ Client& Client:: GetCInstance()
 	return *client;
 }
 
-
-void Client::SendMsg()
-{
-	sf::Uint32 id = cSocket.getLocalPort();
-	MsgConstruct msg;
-	msg.id = id;
-	/*std::memcpy(msg.data, msg.msgtype)*/
-	sf::Packet packet;
-	packet << msg;
-
-	if (cSocket.send(packet) != sf::Socket::Done)
-	{
-		std::cerr << "Message send failure :( " << std::endl;
-		return;
-	}
-	std::cout << "Message send success :)" << std::endl;
-}
-
-bool Client::ReceiveMsg()
-{
-	return true;
-}
 

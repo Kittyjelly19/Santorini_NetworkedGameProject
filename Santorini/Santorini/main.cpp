@@ -14,21 +14,21 @@ int main()
 	std::cout << "Enter (s) to host server, (c) to join server" << std::endl;
 	std::cin >> connectionType;
 
-	if (connectionType == 's')
+	if (connectionType == 's') //if running as a server. 
 	{
 		SERVER.StartServer();
 	}
-	else if (connectionType == 'c')
+	else if (connectionType == 'c')//if running as a client. 
 	{
 		CLIENT.StartClient(C_PORT);
 		
 	}
 
-	
+	//Game instance. 
 	Game g;
-
+	
+	//Game.
 	g.StartGame();
-	////RenderFunction();
 	g.MainGameLoop();
 
 	return 0;

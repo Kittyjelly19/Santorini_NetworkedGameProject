@@ -10,6 +10,7 @@ Tile::~Tile()
 
 void Tile::DrawTile(sf::RenderWindow& w)
 {
+	//Tile basic variables. 
 	sf::RectangleShape tileRect;
 	tileRect.setOutlineThickness(5);
 	sf::Color tileOutline = sf::Color::Black;
@@ -21,7 +22,7 @@ void Tile::DrawTile(sf::RenderWindow& w)
 	tileRect.setPosition(x * 120 + 5, y * 120 + 5);
 	tileRect.setFillColor(tileColour);
 
-	
+	//Tile outline.
 	if (isOutlined)
 	{
 		tileRect.setOutlineColor(sf::Color::Blue);

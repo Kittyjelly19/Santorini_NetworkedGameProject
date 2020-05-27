@@ -309,41 +309,7 @@ void World::Build()
 	}
 }
 
-void World::WStartGame()
-{
-	
-	{
-		DrawHoverOutline();
-
-
-		DrawGameLevel();
-		{
-			for (int i = 0; i < numTiles; i++)
-			{
-				for (int j = 0; j < numTiles; j++)
-				{
-					boardTilesArr[i][j].x = i;
-					boardTilesArr[i][j].y = j;
-
-				}
-
-			}
-		}
-
-		numPlayers = 2;
-
-		PlaceWorker();
-		if (areMaxWorkersPlaced)
-		{
-			currentPState = SelectWorkerState;
-			
-		}
-
-	}
-}
-
-
-
+//Check if tile is in range of the selected builder.
 bool World::isInRange()
 {
 	for (int xTiles = -1; xTiles < 2; xTiles++)
@@ -365,6 +331,7 @@ bool World::isInRange()
 	}
 }
 
+//Check if tile is occupied. 
 bool World::isOccupied()
 {
 	for (int w = 0; w < workers.size(); w++)

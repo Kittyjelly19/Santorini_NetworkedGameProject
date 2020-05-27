@@ -65,7 +65,7 @@ void Server::StartServer()
 		}
 	}
 }
-
+//Sending start game packet. 
 void Server::StartGame()
 {
 	sf::Packet packet;

@@ -1,7 +1,7 @@
 #include "Acceptor.h"
 
 
-
+//Constructor.
 Acceptor::Acceptor(Queue<Message>& q) : queue(q)
 {
 }
@@ -12,7 +12,7 @@ void Acceptor::ConnectionAccepted()
 	sf::TcpListener listener;
 	if (listener.listen(S_PORT) != sf::Socket::Done)
 		return;
-	std::cout << "server is listening to port: " << C_PORT << "waiting for connections" << std::endl;
+	std::cout << "server is listening... " <<  std::endl;
 
 	while (true)
 	{
@@ -22,9 +22,9 @@ void Acceptor::ConnectionAccepted()
 
 		if (listener.accept(*client) != sf::Socket::Done)
 			return;
-		//Get the port of the client and display in output window. 
-		unsigned short clientPort = client->getRemotePort();
-		std::cout << "Client connected. Client IP is: " << client->getRemoteAddress()<< "client port: " << clientPort << std::endl;
+		//Get the port of the client and display in output window if connection successful.
+		unsigned short cPort = client->getRemotePort();
+		std::cout << "Client Successfully Connected. Client IP address is: " << client->getRemoteAddress()<< "and they're on port: " << cPort << std::endl;
 
 		connectionMsg = true;
 
